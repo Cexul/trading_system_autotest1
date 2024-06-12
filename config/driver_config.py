@@ -5,6 +5,8 @@
 
 
 from selenium import webdriver
+from selenium.webdriver.edge.service import Service as EdgeService
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
 
 from common.tools import get_project_path, sep
 
@@ -36,10 +38,7 @@ class DriverConfig(object):
         options.add_argument('--disable-gpu')
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
-        driver = webdriver.Edge(
-            executable_path=get_project_path() + sep(['driver_files', 'msedgedriver'], add_sep_before=True),
-            options=options
-        )
+        driver = webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()),options=options)
 
         # 删除所有cookies
         driver.delete_all_cookies()
