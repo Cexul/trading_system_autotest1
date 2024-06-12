@@ -23,6 +23,13 @@ def get_project_path():
     return file_path[:file_path.find(project_name)+len(project_name)]
 
 def sep(path,add_sep_before=False,add_sep_after=False):
+    """
+    系统分隔符
+    :param path: 路径列表，类型是数组
+    :param add_sep_before: 是否需要在拼接的路径前加一个分隔符
+    :param add_sep_after: 是否需要在拼接的路径后加一个分隔符
+    :return:
+    """
     all_path = os.sep.join(path)
     if add_sep_before:
         all_path = os.sep +all_path
