@@ -39,3 +39,10 @@ class HomeBase(object):
         :return: preceding-sibling同级元素的上一级元素，parent父级方法
         """
         return "//span[contains(text(),'欢迎您')]/parent::div/preceding-sibling::div//img"
+
+    def home_user_avatar_2(self):
+        """
+        首页用户头像大图2
+        :return: ancestor方法
+        """
+        return "//span[text()='我的地址']/ancestor::div[@class='first_card']/div[contains(@class,'avatar')]//img"
