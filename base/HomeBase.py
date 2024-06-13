@@ -17,7 +17,7 @@ class HomeBase(object):
         进入系统后，首页左上角logo
         :return:
         """
-        return "//div[contain(text(),'二手')]"
+        return "//div[contains(text(),'二手')]"
 
     def welcome(self):
         """

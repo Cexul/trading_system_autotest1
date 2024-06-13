@@ -22,5 +22,12 @@ class LeftMenuBase(object):
         """
         return "//aside[@class='el-aside']//span[text()='"+menu_name+"']/parent::li"
 
-# if __name__ == '__main__':
-#     print(LeftMenuBase().level_two_menu('产品'))
+    def order_sold_treasure_tabs(self,menu_name):
+        """
+        二级菜单-已卖出的宝贝顶部tabs
+        :return:
+        """
+        return "//main[contains(@class,'el-main')]//div[text()='"+menu_name+"']"
+
+if __name__ == '__main__':
+    print(LeftMenuBase().order_sold_treasure_tabs('待付款'))
