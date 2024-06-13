@@ -32,3 +32,10 @@ class HomeBase(object):
         :return: following-sibling同级元素的下一级元素
         """
         return "//div[text()='我的日历']/following-sibling::div"
+
+    def home_user_avatar(self):
+        """
+        首页用户头像大图
+        :return: preceding-sibling同级元素的上一级元素，parent父级方法
+        """
+        return "//span[contains(text(),'欢迎您')]/parent::div/preceding-sibling::div//img"
