@@ -29,6 +29,6 @@ class HomeBase(object):
     def show_date(self):
         """
         首页显示日期
-        :return:
+        :return: following-sibling同级元素的下一级元素
         """
         return "//div[text()='我的日历']/following-sibling::div"
