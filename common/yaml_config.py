@@ -18,6 +18,9 @@ class GetConf(object):
     def get_username_password(self):
         return self.env['username'],self.env['password']
 
+    def get_url(self):
+        return self.env['url']
+
 
 if __name__ == '__main__':
-    print(GetConf().get_username_password())
+    print(GetConf().get_url())
