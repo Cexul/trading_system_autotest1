@@ -33,3 +33,21 @@ class AccountPage(AccountBase, ObjectMap):
         """
         button_xpath = self.basic_info_save_button()
         return self.element_click(driver, By.XPATH, button_xpath)
+
+    def top_right_corner_avatar_mouse_hover(self,driver):
+        """
+        右上角头像鼠标悬停
+        :param driver:
+        :return:
+        """
+        avatar_xpath = self.top_right_corner_avatar()
+        return self.mouse_hover(driver,By.XPATH,avatar_xpath)
+
+    def user_logOut(self,driver):
+        """
+        用户头像logOut
+        :param driver:
+        :return:
+        """
+        button_xpath = self.avatar_user_quit_button()
+        return self.element_click(driver,By.XPATH,button_xpath)

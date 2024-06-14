@@ -11,6 +11,8 @@ from selenium.common.exceptions import ElementNotVisibleException, WebDriverExce
 
 from selenium.webdriver.common.keys import Keys
 
+from selenium.webdriver.common.action_chains import ActionChains
+
 from common.yaml_config import *
 
 
@@ -330,3 +332,9 @@ class ObjectMap(object):
         """
         window_handles = driver.window_handles
         driver.switch_to.window(window_handles[-1])
+
+    def mouse_hover(self,driver,locate_type,locator_expression):
+        element = self.element_get(driver, locate_type, locator_expression)
+        ActionChains(driver).move_to_element(element).perform()
+
+

@@ -17,3 +17,17 @@ class AccountBase(object):
         :return:
         """
         return "//span[text()='保存']//parent::button"
+
+    def top_right_corner_avatar(self):
+        """
+        获取左上角头像定位
+        :return:
+        """
+        return "//span[@role='button']"
+
+    def avatar_user_quit_button(self):
+        """
+        头像里退出登录
+        :return:
+        """
+        return "//li[text()='退出登录']"
