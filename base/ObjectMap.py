@@ -6,7 +6,7 @@
 
 import time
 
-from selenium.common.exceptions import ElementNotVisibleException, WebDriverException
+from selenium.common.exceptions import ElementNotVisibleException, WebDriverException,NoSuchElementException
 
 from common.yaml_config import *
 
@@ -164,3 +164,19 @@ class ObjectMap(object):
             print('跳转地址失败，原因是：%s' % e)
             return False
         return True
+
+    def element_is_display(self,driver,locate_type,locator_expression):
+        """
+        元素是否展示
+        :param driver:
+        :param locate_type:
+        :param locator_expression:
+        :return:
+        """
+        try:
+            driver.find_element(by=locate_type,value=locator_expression)
+            return True
+        except NoSuchElementException:
+            # 发生了NoSuchElementException异常后，说明页面中没有找到这个元素，返回False
+            return False
+
