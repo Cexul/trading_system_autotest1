@@ -242,7 +242,7 @@ class ObjectMap(object):
                 element.send_keys(fill_value)
                 self.wait_for_ready_state_complete(driver=driver)
             except Exception as e:
-                print('填写失败',e)
+                print('填写失败', e)
         return True
 
     def element_click(
@@ -290,3 +290,15 @@ class ObjectMap(object):
             print('等待元素消失或者出现失败', e)
             return False
         return True
+
+    def upload(self, driver, locate_type, locator_expression, file_path):
+        """
+        文件上传
+        :param driver:
+        :param locate_type:
+        :param locator_expression:
+        :param file_path:
+        :return:
+        """
+        element = self.element_get(driver, locate_type, locator_expression)
+        return element.send_keys(file_path)

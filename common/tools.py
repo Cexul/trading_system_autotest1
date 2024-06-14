@@ -38,7 +38,18 @@ def sep(path,add_sep_before=False,add_sep_after=False):
     # print(all_path)
     return all_path
 
+def get_img_path(img_name):
+    """
+    获取商品图片路径
+    :param img_name:
+    :return:
+    """
+    img_dir_path = get_project_path()+sep(['img',img_name],add_sep_before=True)
+    return img_dir_path
+
+
 if __name__ == '__main__':
     # print(get_project_path())
-    print(get_project_path())
-    sep(['congif','environment.yaml'],add_sep_after=True)
+    # print(get_project_path())
+    # sep(['congif','environment.yaml'],add_sep_after=True)
+    print(get_img_path('img1.jpg'))
