@@ -68,7 +68,7 @@ class ObjectMap(object):
         end_ms = start_ms + (timeout * 1000)
         for x in range(int(timeout * 10)):
             try:
-                ready_state = driver.execute_scripe('return document.readyState')
+                ready_state = driver.execute_script('return document.readyState')
             except WebDriverException:
                 # 如果有driver的错误，执行js失败，就直接跳过
                 time.sleep(0.03)
@@ -183,7 +183,7 @@ class ObjectMap(object):
             # 发生了NoSuchElementException异常后，说明页面中没有找到这个元素，返回False
             return False
 
-    def element_fill_value(self, driver, locate_type, locator_expression, fill_value, timeout):
+    def element_fill_value(self, driver, locate_type, locator_expression, fill_value, timeout=30):
         """
         元素填值
         :param driver: 浏览器驱动
@@ -206,9 +206,9 @@ class ObjectMap(object):
                                           timeout=timeout)
             try:
                 element.clear()
-            except Exception:
+            except Exception as e:
                 pass
-        except Exception:
+        except Exception as e:
             pass
         if type(fill_value) is int or type(fill_value) is float:
             fill_value = str(fill_value)
@@ -237,7 +237,13 @@ class ObjectMap(object):
                     self.wait_for_ready_state_complete(driver=driver)
             except Exception:
                 raise Exception('元素填写失败')
-            return True
+        else:
+            try:
+                element.send_keys(fill_value)
+                self.wait_for_ready_state_complete(driver=driver)
+            except Exception as e:
+                print('填写失败',e)
+        return True
 
     def element_click(
             self,
@@ -277,9 +283,9 @@ class ObjectMap(object):
             return False
         try:
             # 点击元素后的元素出现或者消失
-            self.element_appear(driver, locate_type=locate_type, locator_expression=locator_expression,
+            self.element_appear(driver, locate_type=locate_type_appear, locator_expression=locator_expression_appear,
                                 timeout=timeout)
-            self.element_disappear(driver, locate_type, locator_expression)
+            self.element_disappear(driver, locate_type_disappear, locator_expression_disappear)
         except Exception as e:
             print('等待元素消失或者出现失败', e)
             return False
