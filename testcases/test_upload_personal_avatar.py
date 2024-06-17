@@ -24,7 +24,7 @@ class TestPersonalInfo(object):
         AccountPage().click_save(driver)
         time.sleep(3)
         AccountPage().top_right_corner_avatar_mouse_hover(driver)
-        time.sleep(4)
+        time.sleep(2)
         AccountPage().user_logOut(driver)
         time.sleep(3)
         # driver.close()
