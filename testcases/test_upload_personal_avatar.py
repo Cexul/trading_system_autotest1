@@ -12,8 +12,8 @@ from page.LoginPage import LoginPage
 
 
 class TestPersonalInfo(object):
-    def test_upload_personal_avatar(self):
-        driver = DriverConfig().driver_config()
+    def test_upload_personal_avatar(self, driver):
+        # driver = DriverConfig().driver_config()
         LoginPage().login(driver, 'jay')
         LeftMenuPage().click_level_one_menu(driver, '账户设置')
         time.sleep(1)
@@ -27,4 +27,4 @@ class TestPersonalInfo(object):
         time.sleep(4)
         AccountPage().user_logOut(driver)
         time.sleep(3)
-        driver.close()
+        # driver.close()

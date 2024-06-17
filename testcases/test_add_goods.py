@@ -14,15 +14,8 @@ from page.GoodsPage import GoodsPage
 
 class TestAddGoods(object):
 
-    @pytest.fixture()
-    def driver(self):
-        get_driver = DriverConfig().driver_config()
-        yield get_driver
-        get_driver.close()
-
-
-    def test_add_goods_001(self):
-        driver = DriverConfig().driver_config()
+    def test_add_goods_001(self, driver):
+        # driver = DriverConfig().driver_config()
         LoginPage().login(driver, 'jay')
         LeftMenuPage().click_level_one_menu(driver, '产品')
         time.sleep(1)

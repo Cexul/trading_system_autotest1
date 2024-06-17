@@ -10,8 +10,8 @@ from config.driver_config import DriverConfig
 
 class TestLogin(object):
 
-    def test_login(self):
-        driver = DriverConfig().driver_config()
+    def test_login(self, driver):
+        # driver = DriverConfig().driver_config()
         # driver.get('http://www.tcpjwtester.top')
         # time.sleep(3)
         # LoginPage().login_input_value(driver,'用户名','周杰伦')
@@ -20,6 +20,6 @@ class TestLogin(object):
         # time.sleep(2)
         # LoginPage().click_login(driver,'登录')
         # time.sleep(1)
-        LoginPage().login(driver,'jay')
+        LoginPage().login(driver, 'jay')
         time.sleep(3)
-        driver.close()
+        # driver.close()

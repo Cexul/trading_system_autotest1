@@ -13,11 +13,11 @@ from page.LoginPage import LoginPage
 
 class TestWindowHandle(object):
 
-    def test_switch_window_handles(self):
-        driver = DriverConfig().driver_config()
+    def test_switch_window_handles(self, driver):
+        # driver = DriverConfig().driver_config()
         LoginPage().login(driver, 'jay')
         LeftMenuPage().click_level_one_menu(driver, '外链')
         time.sleep(3)
         title = ExternalLinkPage().goto_imooc(driver)
         print(title)
-        driver.close()
+        # driver.close()
