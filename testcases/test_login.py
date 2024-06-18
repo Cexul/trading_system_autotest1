@@ -6,20 +6,13 @@ import time
 
 from page.LoginPage import LoginPage
 from config.driver_config import DriverConfig
-
+import allure
 
 class TestLogin(object):
 
     def test_login(self, driver):
-        # driver = DriverConfig().driver_config()
-        # driver.get('http://www.tcpjwtester.top')
-        # time.sleep(3)
-        # LoginPage().login_input_value(driver,'用户名','周杰伦')
-        # time.sleep(1)
-        # LoginPage().login_input_value(driver,'密码','1234abcd!')
-        # time.sleep(2)
-        # LoginPage().click_login(driver,'登录')
-        # time.sleep(1)
-        LoginPage().login(driver, 'jay')
-        time.sleep(3)
-        # driver.close()
+        with allure.step('登录'):
+
+            LoginPage().login(driver, 'jay')
+            time.sleep(3)
+
