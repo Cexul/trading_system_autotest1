@@ -14,6 +14,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 
 from common.yaml_config import *
+from common.tools import get_project_path,sep
+from common.find_img import FindImg
 
 
 class ObjectMap(object):
@@ -333,8 +335,26 @@ class ObjectMap(object):
         window_handles = driver.window_handles
         driver.switch_to.window(window_handles[-1])
 
-    def mouse_hover(self,driver,locate_type,locator_expression):
+    def mouse_hover(self, driver, locate_type, locator_expression):
+        """
+        鼠标悬停
+        """
         element = self.element_get(driver, locate_type, locator_expression)
         ActionChains(driver).move_to_element(element).perform()
 
-
+    def find_img_in_source(self, driver, img_name):
+        """
+        截图并在截图中查找图片
+        :param driver:
+        :param img_name:
+        :return:
+        """
+        # 截图后图片自动保存de路径
+        source_img_path = get_project_path() + sep(['img', 'source_img', img_name], add_sep_before=True)
+        search_img_path = get_project_path() + sep(['img', 'assert_img', img_name], add_sep_before=True)
+        # 截图保存图片
+        driver.get_screenshot_as_file(source_img_path)
+        time.sleep(2)
+        # 在原图中查找是否有指定的图片
+        confidence = FindImg().get_confidence(source_img_path,search_img_path)
+        return confidence
