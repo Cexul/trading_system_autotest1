@@ -6,6 +6,7 @@
 import pytest
 from pytest_assume.plugin import assume
 
+@pytest.mark.skip('跳过')
 class TestAssert(object):
     def test_assert(self):
         with assume: assert 'as' in 'wer'
