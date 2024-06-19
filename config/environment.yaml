@@ -11,11 +11,11 @@ user:
 
 
 
-url: http://www.tcpjwtester.top
+url: http://192.168.3.92
 
 mysql:
-  db: autotest
-  host: localhost
-  password: 123456
+  db: trading_system
+  host: 192.168.3.92
+  password: william
   port: 3306
   user: root

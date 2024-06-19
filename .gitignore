@@ -2,3 +2,5 @@
 *.pyc
 labs
 test.log
+*.png
+*.log
