@@ -8,14 +8,12 @@ import time
 
 from selenium.common.exceptions import ElementNotVisibleException, WebDriverException, NoSuchElementException, \
     StaleElementReferenceException
-
 from selenium.webdriver.common.keys import Keys
-
 from selenium.webdriver.common.action_chains import ActionChains
-
 from common.yaml_config import *
 from common.tools import get_project_path, sep
 from common.find_img import FindImg
+from common.report_add_img import add_img_path_2_report
 
 
 class ObjectMap(object):
@@ -355,6 +353,8 @@ class ObjectMap(object):
         # 截图保存图片
         driver.get_screenshot_as_file(source_img_path)
         time.sleep(2)
+        add_img_path_2_report(source_img_path, '原图')
+        add_img_path_2_report(search_img_path, '需要查找的图片')
         # 在原图中查找是否有指定的图片
         confidence = FindImg().get_confidence(source_img_path, search_img_path)
         return confidence

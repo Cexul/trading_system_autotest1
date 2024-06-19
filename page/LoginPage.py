@@ -105,6 +105,7 @@ class LoginPage(LoginBase, ObjectMap):
         :param img_name:
         :return:
         """
+        log.info('登录后判断头像')
         return self.find_img_in_source(driver, img_name)
 
     def assert_login_success(self, driver):

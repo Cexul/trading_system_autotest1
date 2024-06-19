@@ -10,6 +10,9 @@ import os.path
 def get_now_time():
     return datetime.datetime.now()
 
+def get_now_date_time_str():
+    return datetime.datetime.now().strftime('%Y%m%d%H%M%S')
+
 def get_project_path():
     """
     获取项目的绝对路径

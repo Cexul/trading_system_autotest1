@@ -3,8 +3,10 @@
 # @Time: 2024/6/18 10:31
 # @Author: xuliang
 
+import cv2
 import aircv as ac
-from common.tools import get_project_path, sep
+from common.tools import *
+from common.report_add_img import add_img_path_2_report
 
 
 class FindImg(object):
@@ -24,9 +26,22 @@ class FindImg(object):
         img_src = self.img_imread(source_path)
         img_sch = self.img_imread(search_path)
         result = ac.find_template(img_src, img_sch)
-        print(result)
+        cv2.rectangle(
+            img_src,
+            result['rectangle'][0],
+            result['rectangle'][3],
+            (255, 0, 0),
+            2
+        )
+        diff_img_path = get_project_path() + sep(['img', 'diff_img', get_now_date_time_str() + '对比的图.png'],
+                                                 add_sep_before=True)
+        cv2.imencode('.png', img_src)[1].tofile(diff_img_path)
+        add_img_path_2_report(diff_img_path, '查找的图')
         return result['confidence']
 
+
 # if __name__ == '__main__':
+#     source_path = get_project_path() + sep(['img', 'source.png'], add_sep_before=True)
+#
 #     search_path = get_project_path() + sep(['img', 'search.png'], add_sep_before=True)
-#     FindImg().get_confidence(source_path,search_path)
+#     FindImg().get_confidence(source_path, search_path)
