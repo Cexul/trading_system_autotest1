@@ -2,8 +2,8 @@
 # coding=utf-8
 # @Time: 2024/6/13 12:15
 # @Author: xuliang
-
-
+import datetime
+import os.path
 import time
 
 from selenium.common.exceptions import ElementNotVisibleException, WebDriverException, NoSuchElementException, \
@@ -14,7 +14,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 
 from common.yaml_config import *
-from common.tools import get_project_path,sep
+from common.tools import get_project_path, sep
 from common.find_img import FindImg
 
 
@@ -356,5 +356,21 @@ class ObjectMap(object):
         driver.get_screenshot_as_file(source_img_path)
         time.sleep(2)
         # 在原图中查找是否有指定的图片
-        confidence = FindImg().get_confidence(source_img_path,search_img_path)
+        confidence = FindImg().get_confidence(source_img_path, search_img_path)
         return confidence
+
+    def element_screenshot(self, driver, locate_type, locator_expression):
+        """
+        元素截图
+        :param driver:
+        :param locate_type:
+        :param locator_expression:
+        :return:
+        """
+        ele_name = datetime.datetime.now().strftime('%Y%m%d%H%M%S') + '.png'
+        ele_img_dir_path = get_project_path() + sep(['img', 'ele_img'], add_sep_before=True, add_sep_after=True)
+        if not os.path.exists(ele_img_dir_path):
+            os.makedirs(ele_img_dir_path)
+        ele_img_path = ele_img_dir_path + ele_name
+        self.element_get(driver, locate_type, locator_expression).screenshot(ele_img_path)
+        return ele_img_path
