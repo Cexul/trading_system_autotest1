@@ -5,6 +5,9 @@ user:
   william:
     username: william
     password: 1234abcd!
+  chen:
+    username: william
+    password: william!
 
 
 
