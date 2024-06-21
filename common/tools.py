@@ -6,6 +6,8 @@
 import datetime
 import os.path
 
+import requests
+
 
 def get_now_time():
     return datetime.datetime.now()
@@ -50,9 +52,23 @@ def get_img_path(img_name):
     img_dir_path = get_project_path()+sep(['img',img_name],add_sep_before=True)
     return img_dir_path
 
+def get_every_wallpaper():
+    """
+    从bing获取每日壁纸
+    :return: 
+    """
+    everyday_wallpaper_url = 'http://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=10&mkt=zh-CN'
+    try:
+        res = requests.get(url=everyday_wallpaper_url)
+        wallpaper_url = 'http://cn.bing.com'+res.json()['images'][0]['url'][:-7]
+    except Exception as e:
+        print(e)
+        wallpaper_url =''
+    return wallpaper_url
+
 
 if __name__ == '__main__':
     # print(get_project_path())
     # print(get_project_path())
     # sep(['congif','environment.yaml'],add_sep_after=True)
-    print(get_img_path('img1.jpg'))
+    print(get_every_wallpaper())

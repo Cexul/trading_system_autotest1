@@ -24,3 +24,12 @@ redis:
   host: 192.168.3.92
   port: 6379
   db: 0
+
+jenkins:
+  url: http://localhost:8080
+
+dingding_group:
+  webhook: http://www.baidu.com
+
+qywx_group:
+  webhook: http://www.baidu.com
